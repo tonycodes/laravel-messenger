@@ -5,6 +5,7 @@ use Illuminate\Database\Schema\Blueprint;
 
 class CreateThreadsTable extends Migration
 {
+    
     /**
      * Run the migrations.
      *
@@ -12,11 +13,21 @@ class CreateThreadsTable extends Migration
      */
     public function up()
     {
+        
         Schema::create('threads', function (Blueprint $table) {
+        
             $table->increments('id');
+        
             $table->string('subject');
+        
+            $table->timestamp('deleted_at')
+                ->nullable()
+                ->default(NULL);
+        
             $table->timestamps();
+        
         });
+    
     }
 
 
@@ -27,6 +38,9 @@ class CreateThreadsTable extends Migration
      */
     public function down()
     {
+    
         Schema::drop('threads');
+    
     }
+    
 }
